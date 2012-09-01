@@ -1,7 +1,7 @@
 
 # Modal Responsive Fix <sup>0.0.2</sup>
 
-## Features:
+## Features
 
 * Resolves mobile scrolling issues for devices without `position: fixed` support ([view devices lacking support][8])
 * Adds mobile touch support for `.modal`'s that overflow (since scrollable div's don't work on all devices)
