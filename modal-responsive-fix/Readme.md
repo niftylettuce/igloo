@@ -15,16 +15,16 @@
 **2.** Include [jquery.modal-responsive-fix.js][4] after the previous `<script>`:
 
 ```html
-<script type="text/javascript" src="/js/vendor/jquery.modal-responsive-fix.min.js"></script>
+<script type="text/javascript" src="/js/vendor/modal-responsive-fix.min.js"></script>
 ```
 
 **3.** Patch [modal.less][5] (or [bootstrap.css][6]) (fixes scrollable div heights on mobile):
 
-```css
+```less
 .modal-body {
   overflow-y: auto;
-  // #L69 of "modal.less"
-  // max-height: 400px; /* remove this */
+  /* #L69 of "modal.less" */
+  /* max-height: 400px; // remove this line */
   padding: 15px;
 }
 ```
@@ -32,7 +32,7 @@
 **4.** **Optional**: Patch [bootstrap-image-gallery.css][7] (only if you are using `.modal-fullscreen` via [Bootstrap Image Gallery][2])
 
 ```css
-// #L137-140
+/* #L137-140 of "bootstrap-image-gallery.css" */
 @media (max-width: 480px) {
   .modal-gallery .btn span {
     display: none;
