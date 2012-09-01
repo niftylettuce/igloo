@@ -1,5 +1,6 @@
 
-# Twitter Bootstrap jQuery Patches - Modal Responsive Fix <sup>0.0.2</sup>
+# Twitter Bootstrap jQuery Plugins
+## Modal Responsive Fix <sup>0.0.2</sup>
 
 * Resolves Twitter Bootstrap issues [#407 #1017 #1339 #2130 #3361 #3362 #4283][1]
 * Built-in support for fullscreen [Bootstrap Image Gallery][2]
