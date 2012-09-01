@@ -23,7 +23,7 @@ var adjustModal = function adjustModal($modal) {
   if (!fullscreen && $(window).width() <= 480) {
     $modal.css('max-height', maxHeight)
     $modal.find('.modal-body').css('max-height', 'inherit')
-  } else if ($(window).width() > 480) {
+  } else if (!fullscreen && $(window).width() > 480) {
     $modal.css('max-height', 'inherit');
     $modal.find('.modal-body').css('max-height', 400);
   }
