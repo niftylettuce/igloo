@@ -22,18 +22,7 @@
 <script type="text/javascript" src="/js/vendor/modal-responsive-fix.js"></script>
 ```
 
-**3.** Patch [modal.less][5] (or [bootstrap.css][6]) (fixes scrollable div heights on mobile):
-
-```less
-.modal-body {
-  overflow-y: auto;
-  /* #L69 of "modal.less" */
-  /* max-height: 400px; // remove this line */
-  padding: 15px;
-}
-```
-
-**4.** **Optional**: Patch [bootstrap-image-gallery.css][7] (only if you are using `.modal-fullscreen` via [Bootstrap Image Gallery][2])
+**3.** **Optional**: Patch [bootstrap-image-gallery.css][7] (only if you are using `.modal-fullscreen` via [Bootstrap Image Gallery][2])
 
 ```css
 /* #L137-140 of "bootstrap-image-gallery.css" */
