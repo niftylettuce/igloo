@@ -6,15 +6,20 @@
 
 # Quick Start
 
-1. Include [touchscroll.js][3] (fixes mobile scrollable div issue):
+**1.** Include [touchscroll.js][3] (fixes mobile scrollable div issue):
+
 ```html
 <script type="text/javascript" src="/js/vendor/touchscroll.min.js"></script>
 ```
-2. Include [jquery.modal-responsive-fix.js][4] after the previous `<script>`:
+
+**2.** Include [jquery.modal-responsive-fix.js][4] after the previous `<script>`:
+
 ```html
 <script type="text/javascript" src="/js/vendor/jquery.modal-responsive-fix.min.js"></script>
 ```
-3. Patch [modal.less][5] (or [bootstrap.css][6]) (fixes scrollable div heights on mobile):
+
+**3.** Patch [modal.less][5] (or [bootstrap.css][6]) (fixes scrollable div heights on mobile):
+
 ```css
 .modal-body {
   overflow-y: auto;
@@ -23,7 +28,9 @@
   padding: 15px;
 }
 ```
-4. **Optional**: Patch [bootstrap-image-gallery.css][7] (only if you are using `.modal-fullscreen` via [Bootstrap Image Gallery][2])
+
+**4.** **Optional**: Patch [bootstrap-image-gallery.css][7] (only if you are using `.modal-fullscreen` via [Bootstrap Image Gallery][2])
+
 ```css
 // #L137-140
 @media (max-width: 480px) {
@@ -40,7 +47,7 @@
 ```
 
 [1]: https://github.com/twitter/bootstrap/issues/2130
-[1]: https://github.com/blueimp/Bootstrap-Image-Gallery
+[2]: https://github.com/blueimp/Bootstrap-Image-Gallery
 [3]: https://raw.github.com/niftylettuce/twitter-bootstrap-jquery-plugins/master/modal-responsive-fix/touchscroll.js
 [4]: https://raw.github.com/niftylettuce/twitter-bootstrap-jquery-plugins/master/modal-responsive-fix/bootstrap.jquery.modal-responsive-fix.js
 [5]: https://github.com/twitter/bootstrap/blob/master/less/modals.less#L69
