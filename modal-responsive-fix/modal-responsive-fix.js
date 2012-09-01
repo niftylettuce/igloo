@@ -11,15 +11,17 @@
 
 $(function() {
   // TODO: bind touchScroll to newly created `.modal`'s
-  $('.modal').touchScroll();
+  $('.modal').not('.modal-gallery').touchScroll();
 });
 
 var adjustModal = function adjustModal($modal) {
 
-  var top, maxHeight = $(window).height() - 20;
+  var top,
+    maxHeight = $(window).height() - 20,
+    fullscreen = $modal.hasClass('modal-fullscreen');
 
   if ($(window).width() <= 480) {
-    if ($modal.hasClass('modal-fullscreen')) {
+    if (fullscreen) {
       if ($modal.height() >= $(window).height()) {
         top = $(window).scrollTop();
       } else {
@@ -32,18 +34,18 @@ var adjustModal = function adjustModal($modal) {
     }
   } else {
     top = '50%';
-    if ($modal.hasClass('modal-fullscreen')) {
+    if (fullscreen) {
       $modal.stop().animate({
         marginTop  : -($modal.outerHeight() / 2),
         marginLeft : -($modal.outerWidth() / 2),
-        top        : top,
-        maxHeight  : maxHeight
+        top        : top
       }, "fast");
       return;
     }
   }
 
-  $modal.stop().animate({ top: top, maxHeight: maxHeight }, "fast");
+  $modal.stop().animate({ top: top }, "fast");
+  if (!fullscreen) $modal.css('max-height', maxHeight)
 
 };
 
