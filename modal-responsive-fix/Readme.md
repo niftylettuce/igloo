@@ -12,7 +12,7 @@
 <script type="text/javascript" src="/js/vendor/touchscroll.min.js"></script>
 ```
 
-**2.** Include [jquery.modal-responsive-fix.js][4] after the previous `<script>`:
+**2.** Include [modal-responsive-fix.js][4] after the previous `<script>`:
 
 ```html
 <script type="text/javascript" src="/js/vendor/modal-responsive-fix.min.js"></script>
@@ -49,7 +49,7 @@
 [1]: https://github.com/twitter/bootstrap/issues/2130
 [2]: https://github.com/blueimp/Bootstrap-Image-Gallery
 [3]: https://raw.github.com/niftylettuce/twitter-bootstrap-jquery-plugins/master/modal-responsive-fix/touchscroll.js
-[4]: https://raw.github.com/niftylettuce/twitter-bootstrap-jquery-plugins/master/modal-responsive-fix/bootstrap.jquery.modal-responsive-fix.js
+[4]: https://raw.github.com/niftylettuce/twitter-bootstrap-jquery-plugins/master/modal-responsive-fix/modal-responsive-fix.js
 [5]: https://github.com/twitter/bootstrap/blob/master/less/modals.less#L69
 [6]: http://twitter.github.com/bootstrap/assets/css/bootstrap.css
 [7]: https://github.com/blueimp/Bootstrap-Image-Gallery/blob/master/css/bootstrap-image-gallery.css#L137-140
