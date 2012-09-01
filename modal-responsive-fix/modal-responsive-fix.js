@@ -20,6 +20,13 @@ var adjustModal = function adjustModal($modal) {
     maxHeight = $(window).height() - 20,
     fullscreen = $modal.hasClass('modal-fullscreen');
 
+  if (!fullscreen && $modal.css('display') !== 'block')
+    $modal.css('max-height', maxHeight)
+  else
+    $modal.find('.modal-body').css('max-height', 400)
+
+  // TODO: add fix for when $modal.width() > $(window).width()
+
   if ($(window).width() <= 480) {
     if (fullscreen) {
       if ($modal.height() >= $(window).height()) {
@@ -34,6 +41,7 @@ var adjustModal = function adjustModal($modal) {
     }
   } else {
     top = '50%';
+    $modal.css('display', 'block')
     if (fullscreen) {
       $modal.stop().animate({
         marginTop  : -($modal.outerHeight() / 2),
@@ -45,7 +53,6 @@ var adjustModal = function adjustModal($modal) {
   }
 
   $modal.stop().animate({ top: top }, "fast");
-  if (!fullscreen) $modal.css('max-height', maxHeight)
 
 };
 
