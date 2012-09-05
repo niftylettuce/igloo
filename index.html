@@ -1,0 +1,207 @@
+<html>
+  <head>
+    <title>Twitter Bootstrap jQuery Plugins</title>
+    <link href="http://twitter.github.com/bootstrap/assets/css/bootstrap.css" rel="stylesheet">
+    <link href="http://twitter.github.com/bootstrap/assets/css/bootstrap-responsive.css" rel="stylesheet">
+    <link href="https://raw.github.com/blueimp/Bootstrap-Image-Gallery/master/css/bootstrap-image-gallery.css" rel="stylesheet">
+    <link href="http://twitter.github.com/bootstrap/assets/js/google-code-prettify/prettify.css" rel="stylesheet">
+    <style type="text/css">
+      html, body {
+        height: 100%;
+      }
+      @media (max-width: 767px) {
+        .modal-gallery {
+          margin-top: 0 !important;
+          margin-left: 0 !important;
+        }
+        .modal-fullscreen {
+          left: 0 !important;
+          right: 0 !important;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <div class="pull-right">
+          <br />
+          <a href="https://github.com/niftylettuce/twitter-bootstrap-jquery-plugins" class="btn btn-large btn-success">View on Github</a>
+          <a href="https://github.com/twitter/bootstrap/issues/2130#issuecomment-8286217" class="btn btn-large btn-inverse">See discussion #2130</a>
+        </div>
+        <h1>Twitter Bootstrap jQuery Plugins</h1>
+        <p class="lead">Responsive patches, mobile compatibility, and more.</p>
+      </div>
+    </header>
+
+    <!-- Normal Modal -->
+    <div class="modal hide" id="normal-modal">
+      <div class="modal-header">
+        Modal Responsive Fix
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque velit urna, consequat quis lacinia ac, rutrum eget ante. Vivamus elementum ornare nulla id placerat. Vestibulum et cursus nisl. Maecenas iaculis tempus quam, facilisis lacinia arcu egestas ut. Ut enim urna, feugiat at aliquam aliquet, sagittis id sem. Phasellus posuere convallis adipiscing. Praesent euismod risus eu arcu varius eu varius augue pharetra. Nullam tincidunt iaculis elit. Etiam ultricies feugiat fermentum. Donec eget congue diam. Nulla elementum ultricies varius. Suspendisse condimentum orci sed lacus cursus at egestas ante egestas. Duis laoreet facilisis augue ut rhoncus.</p>
+        <p>Phasellus eget nisl orci, sit amet sodales eros. Proin a erat metus, at luctus turpis. In ac tellus tellus. Sed in nulla ut odio fermentum pretium. In malesuada volutpat purus sed vehicula. Integer ac sapien in sem mollis rutrum non sed orci. Donec turpis felis, bibendum nec suscipit nec, aliquam nec justo. Maecenas non nulla erat, vel rutrum felis. Phasellus ultrices, orci nec aliquam sagittis, purus nibh facilisis neque, sed vestibulum metus enim sed lorem. Donec ac pharetra lacus. Cras in tristique elit. Suspendisse in lacus nec urna dapibus pellentesque nec eget elit. Nam interdum auctor felis id rhoncus. Nullam cursus congue leo quis lobortis. Mauris sit amet mi eget mauris venenatis euismod a at nisl. Donec eleifend erat id leo suscipit vitae ultricies metus ornare.</p>
+        <p>Aliquam dapibus molestie condimentum. Aliquam lorem nisi, pulvinar quis porttitor vitae, blandit at neque. Nunc ultricies egestas volutpat. Nulla facilisi. Nulla facilisi. Nulla facilisi. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.</p>
+        <p>Suspendisse potenti. Praesent mi lorem, congue eu volutpat ac, scelerisque non lacus. Fusce scelerisque nisl sit amet sem iaculis nec iaculis mauris placerat. Donec laoreet, odio nec cursus sollicitudin, tellus magna eleifend ipsum, at posuere enim arcu nec lacus. Quisque at lorem lorem. Donec porta urna vitae erat convallis luctus. Quisque vitae dolor nec tortor consectetur venenatis. Morbi sed nisl malesuada neque commodo elementum posuere sed metus.</p>
+        <p>Duis suscipit lacus sed mauris congue quis vehicula lorem venenatis. Nulla at arcu ut dolor hendrerit congue. In hac habitasse platea dictumst. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Donec rutrum diam quis orci tempor adipiscing. Curabitur dignissim mauris quis enim ullamcorper aliquet. Aliquam vitae interdum sapien. Fusce semper, eros at pellentesque varius, ipsum neque malesuada metus, sit amet interdum lorem lorem at dui. Cras pellentesque, odio eu egestas sagittis, est mi commodo tellus, sed semper leo tellus eget lorem. Nam ut turpis lectus, at molestie dolor. Nullam enim sapien, adipiscing ut congue et, feugiat sit amet leo. Vestibulum vel purus diam. Suspendisse potenti. Fusce eu orci et elit vehicula imperdiet et et dolor. Nunc diam nisl, aliquet at tempor eu, congue vitae odio. Donec mollis dignissim turpis sit amet scelerisque.</p>
+      </div>
+      <div class="modal-footer">
+        <button data-dismiss="modal" class="btn btn-inverse">Close</button>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="row">
+        <div class="span12">
+          <div class="pull-right">
+            <a href="#normal-modal" data-toggle="modal" class="btn btn-primary btn-large">trigger normal modal</a>
+            <a href="#bootstrap-image-gallery" class="btn btn-danger btn-large">go to image gallery modal</a>
+          </div>
+          <h2>Modal Responsive Fix <sup>0.0.3</sup></h2>
+          <div class="alert alert-info">try either demo (the normal modal or image gallery) and then resize your browser window to see what this does</div>
+          <p>Here are remaining TODO's (feel free to solve them):</p>
+          <ul>
+            <li>
+              is there a completely/much easier way to do this workaround for `position: fixed`?
+              <ul>
+                <li>(e.g. <a href="http://caniuse.com/#feat=css-fixed" target="_blank">caniuse</a> shows not much compatibility yet)</li>
+                <li>there's also those faked versions where div's scroll...</li>
+              </ul>
+            <li>`uglifyjs -o ... ...` compressed it from 4.8 kB to 1.9 kB (see modal-responsive-fix.min.js)</li>
+            <li>jqueryui vs touchscroll? (also minify touchscroll if we plan to use)</li>
+            <li>needs some more testing and cleanup, maybe a rewrite (the basic calculations are there for reference)</li>
+            <li>patch css/js for bootstrap-image-gallery so we don't have to override styles</li>
+            <li>auto-resize images when window/orientation changes for bootstrap-image-gallery</li>
+            <li>investigate if there is a better solution instead of `html,body{height:100%;}`</li>
+            <li>plugin needs some tlc and some other methods probably</li>
+            <li>figure out why `toggle fullscreen` isn't working (or) how we can support it</li>
+          </ul>
+<pre class="prettyprint linenums">
+&lt;html&gt;
+  &lt;!-- your stylesheets go here (view source of this page for example) --&gt;
+  &lt;style type='text/css'&gt;
+    /* set the height so $(window).height() is accurate */
+    html, body {
+      height: 100%;
+    }
+    /* optional: override bootstrap image gallery */
+    @media (max-width: 767px) {
+      .modal-gallery {
+        margin-top: 0 !important;
+        margin-left: 0 !important;
+      }
+    }
+    @media (max-width: 480px) {
+      .modal-fullscreen {
+        left: 0 !important;
+        right: 0 !important;
+      }
+    }
+  &lt;/style&gt;
+  &lt;body&gt;
+    &lt;!-- your modals go here (view source of this page for example) --&gt;
+    &lt;!-- your required scripts go here (view source of this page for example) --&gt;
+    &lt;script&gt;
+      $(function() {
+        $('.modal').modalResponsiveFix({ debug: true })
+        $('.modal').touchScroll();
+      })
+    &lt;/script&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+</pre>
+          <p>
+            <div class="pull-right">
+              <button type="button" id="toggle fullscreen" class="btn btn-medium btn-primary">toggle fullscreen (not working atm)</button>
+              <a href="http://blueimp.github.com/Bootstrap-Image-Gallery/" target="_blank" class="btn btn-medium btn-inverse">learn more</a>
+            </div>
+            <h3><a href="#bootstrap-image-gallery" name="bootstrap-image-gallery">Bootstrap Image Gallery</a></h3>
+            <div id="gallery" data-toggle="modal-gallery" data-target="#modal-gallery"></div>
+            <!-- modal-gallery is the modal dialog used for the image gallery -->
+            <div id="modal-gallery" class="modal modal-gallery modal-fullscreen hide fade">
+                <div class="modal-header">
+                    <a class="close" data-dismiss="modal">&times;</a>
+                    <h3 class="modal-title"></h3>
+                </div>
+                <div class="modal-body"><div class="modal-image"></div></div>
+                <div class="modal-footer">
+                    <a class="btn modal-download" target="_blank">
+                        <i class="icon-download"></i>
+                        <span>Download</span>
+                    </a>
+                    <a class="btn btn-success modal-play modal-slideshow" data-slideshow="5000">
+                        <i class="icon-play icon-white"></i>
+                        <span>Slideshow</span>
+                    </a>
+                    <a class="btn btn-info modal-prev">
+                        <i class="icon-arrow-left icon-white"></i>
+                        <span>Previous</span>
+                    </a>
+                    <a class="btn btn-primary modal-next">
+                        <span>Next</span>
+                        <i class="icon-arrow-right icon-white"></i>
+                    </a>
+                </div>
+            </div>
+          </p>
+        </div>
+      </div>
+    </div>
+    <!-- jQuery -->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
+    <!-- Prettify -->
+    <script src="http://twitter.github.com/bootstrap/assets/js/google-code-prettify/prettify.js"></script>
+    <!-- Bootstrap -->
+    <script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-transition.js"></script>
+    <script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-modal.js"></script>
+    <script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-button.js"></script>
+    <!-- Bootstrap Image Gallery -->
+    <script src="http://blueimp.github.com/JavaScript-Load-Image/load-image.min.js"></script>
+    <script src="https://raw.github.com/niftylettuce/Bootstrap-Image-Gallery/master/js/bootstrap-image-gallery.js"></script>
+    <!-- Modal Responsive Fix -->
+    <script src="http://raw.github.com/niftylettuce/twitter-bootstrap-jquery-plugins/master/modal-responsive-fix/touchscroll.js"></script>
+    <script src="modal-responsive-fix/modal-responsive-fix.js"></script>
+    <!-- Make Code Pretty -->
+    <script>
+      window.prettyPrint && prettyPrint()
+    </script>
+    <!-- Example Implementation -->
+    <script>
+      $(function() {
+        // normal modal window
+        $('.modal').modalResponsiveFix({ debug: true })
+        $('.modal').touchScroll();
+        // Load images via flickr for demonstration purposes:
+        $.ajax({
+            url : 'http://api.flickr.com/services/rest/'
+          , data: {
+                format  : 'json'
+              , method  : 'flickr.interestingness.getList'
+              , api_key : '7617adae70159d09ba78cfec73c13be3'
+            }
+          , dataType : 'jsonp'
+          , jsonp : 'jsoncallback'
+        }).done(function (data) {
+          var $gallery = $('#gallery')
+            , url
+          $.each(data.photos.photo, function (index, photo) {
+            url = 'http://farm' + photo.farm + '.static.flickr.com/' + photo.server + '/' + photo.id + '_' + photo.secret
+            var $a = $('<a rel="gallery"/>')
+            $a.append($('<img>').prop('src', url + '_s.jpg')).prop('href', url + '_b.jpg').prop('title', photo.title)
+            $gallery.append($a)
+          })
+        })
+      })
+    </script>
+    <script>
+      $(function() {
+        // toggle fullscreen
+        $('#toggle-fullscreen').click(function() {
+          $('#modal-gallery').toggleClass('modal-fullscreen')
+        })
+      })
+    </script>
+  </body>
+</html>
