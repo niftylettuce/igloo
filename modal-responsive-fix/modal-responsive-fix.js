@@ -41,11 +41,11 @@
       })
 
       // when we scroll down we want it stick on mobile
-      $(window).scroll(adjust($that))
+      $(window).bind('scroll.modalResponsiveFix', adjust($that))
 
       // when we resize we want it to adjust accordingly
       //  (this adds support for orientation change too)
-      $(window).resize(adjust($that))
+      $(window).bind('resize.modalResponsiveFix', adjust($that))
     }
 
     function adjust($el) {
