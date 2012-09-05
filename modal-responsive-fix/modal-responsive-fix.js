@@ -31,7 +31,7 @@
       //
       // we have to delay because modal isn't shown yet
       //  and we're trying to prevent double scrollbar
-      //  on phones and tables (see below)
+      //  on phones and tablets (see below)
       //
       // if we didn't delay, then we wouldn't get proper
       //  values for $header/$body/$footer outerHeight's
