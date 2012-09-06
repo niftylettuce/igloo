@@ -1,5 +1,5 @@
 
-# Modal Responsive Fix <sup>0.0.4</sup>
+# Modal Responsive Fix <sup>0.0.3</sup>
 
 ## [Live Demo](http://niftylettuce.github.com/twitter-bootstrap-jquery-plugins)
 
