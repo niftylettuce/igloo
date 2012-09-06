@@ -2,22 +2,20 @@
 //     Twitter Bootstrap jQuery Plugins - Modal Responsive Fix
 //     Copyright (c) 2012 Nick Baugh <niftylettuce@gmail.com>
 //     MIT Licensed
-//     v0.0.3
+//     v0.0.4
 
 // * Author: [@niftylettuce](https://twitter.com/#!/niftylettuce)
 // * Source: <https://github.com/niftylettuce/twitter-bootstrap-jquery-plugins>
 
 // # modal-responsive-fix
 
-(function($) {
+;(function($, window) {
 
   $.fn.modalResponsiveFix = function(opts) {
 
     // set default options
     opts            = opts            || {}
     opts.spacing    = opts.spacing    || 10
-    opts.fullscreen = opts.fullscreen || false
-    opts.override   = opts.override   || false
     opts.debug      = opts.debug      || false
     opts.event      = opts.event      || 'show'
 
@@ -26,7 +24,13 @@
     $modals.each(loop)
 
     function loop() {
+
       var $that = $(this)
+
+      // support for bootstrap-image-gallery
+      var gallery    = $that.hasClass('modal-gallery')
+        , fullscreen = $that.hasClass('modal-fullscreen')
+        , stretch    = $that.hasClass('modal-fullscreen-stretch')
 
       //
       // we have to delay because modal isn't shown yet
@@ -36,34 +40,71 @@
       // if we didn't delay, then we wouldn't get proper
       //  values for $header/$body/$footer outerHeight's
       //
-      $that.on(opts.event, function() {
-        setTimeout(adjust($that), 1)
+      $that.on(opts.event, function(ev) {
+        setTimeout(adjust($that, gallery, fullscreen, stretch), 1)
+        // when we resize we want it to adjust accordingly
+        $(window).on('resize.mrf', adjust($that, gallery, fullscreen, stretch))
+        if(gallery) $that.on('displayed', adjust($that, gallery, fullscreen, stretch))
       })
 
-      // when we scroll down we want it stick on mobile
-      $(window).bind('scroll.modalResponsiveFix', adjust($that))
+      $that.on('hide', function() {
+        $(window).off('resize.mrf', gallery, fullscreen, stretch);
+      })
 
-      // when we resize we want it to adjust accordingly
-      //  (this adds support for orientation change too)
-      $(window).bind('resize.modalResponsiveFix', adjust($that))
     }
 
-    function adjust($el) {
+    function adjust($el, gallery, fullscreen, stretch) {
 
       return function(ev) {
 
-        if (typeof ev !== 'undefined')
-          ev.preventDefault()
+        var $modal  = $el || $(this)
+          , $header = $modal.find('.modal-header')
+          , $body   = $modal.find('.modal-body')
+          , $footer = $modal.find('.modal-footer')
 
         // set the window once
         var $w = $(window)
 
         // set basic data like width and height
         var data = {
-            width     : $w.width()
-          , height    : $w.height()
-          , scrollTop : $w.scrollTop()
+            width  : $w.width()
+          , height : $w.height()
         }
+
+        if (gallery && $modal.data().modal._loadImageOptions && typeof ev === 'object' && ev.type === 'resize') {
+          var options = $modal.data().modal._loadImageOptions
+          if (fullscreen) {
+            options.maxWidth = data.width
+            options.maxHeight = data.height
+            if (stretch) {
+              options.minWidth = data.width
+              options.minHeight = data.height
+            }
+          } else {
+            options.maxWidth = data.width - $modal.data().modal._loadOptions.offsetWidth
+            options.maxHeight = data.height - $modal.data().modal._loadOptions.offsetHeight
+          }
+          if (data.width > 480) {
+            $modal.css({
+                marginTop  : -($modal.outerHeight() / 2)
+              , marginLeft : -($modal.outerWidth() / 2)
+            })
+          }
+
+          var original = {
+              width  : $modal.data().modal.img.width
+            , height : $modal.data().modal.img.height
+          }
+
+          var img = $modal.data().modal._loadingImage = window.loadImage.scale(original, options)
+
+          $modal.find('.modal-image').css(img)
+          $modal.find('.modal-image img').attr('width', img.width)
+          $modal.find('.modal-image img').attr('height', img.height)
+
+        }
+
+        data.scrollTop = $w.scrollTop()
 
         // set max height using data.height
         data.maxHeight = data.height - (opts.spacing * 2)
@@ -72,77 +113,27 @@
         if (data.width > 480 && data.width <= 767)
           data.maxHeight = data.maxHeight - 20
 
-        var $modal  = $el || $(this)
-          , $header = $modal.find('.modal-header')
-          , $body   = $modal.find('.modal-body')
-          , $footer = $modal.find('.modal-footer')
-
         var modal = {
             width  : $modal.width()
           , height : $modal.height()
         }
 
-        // detect if we're in full screen mode
-        var hasFullscreen = $modal.hasClass('modal-fullscreen')
-
-        // set default fullscreen option
-        if (!opts.override && (opts.fullscreen || hasFullscreen))
-          opts.fullscreen = true
-
-        // prevent the modal from overflowing on phones and tablets
-        if (!opts.fullscreen) {
-
-          if (data.width <= 767 && modal.height >= data.maxHeight) {
-            $modal.css({ maxHeight: data.maxHeight })
-          } else {
-            $modal.css({ maxHeight: 'none' })
-          }
-
-          // prevent double scrollbar on phones and tablets
-          if (data.width <= 767) {
-            // take data.maxHeight and subtract the height footer/header/body padding
-            var difference = data.maxHeight
-            difference = difference - $header.outerHeight(true)
-            difference = difference - $footer.outerHeight(true)
-            difference = difference - ($body.outerHeight(true) - $body.height())
-            if (difference > 400) difference = 400
-            $body.css('max-height', difference)
-          } else if (!opts.fullscreen) {
-            $body.css('max-height', 400)
-          }
-
+        // take data.maxHeight and subtract the height footer/header/body padding
+        if (!gallery) {
+          var difference = data.maxHeight
+          difference = difference - $header.outerHeight(true)
+          difference = difference - $footer.outerHeight(true)
+          difference = difference - ($body.outerHeight(true) - $body.height())
+          if (difference > 400) difference = 400
+          $body.css('max-height', difference)
         }
 
-        if (data.width <= 767) {
-
-          // ## phone and tablet support
-          if (opts.fullscreen) {
-            if (modal.height >= data.height)
-              modal.top = data.scrollTop
-            else
-              modal.top = data.scrollTop + (data.height - modal.height) / 2
-          } else if (modal.height >= data.maxHeight) {
-            modal.top = data.scrollTop + opts.spacing
-          } else {
-            modal.top = data.scrollTop + (data.height - modal.height) / 2
-          }
-          $modal.css({ position: 'absolute', top: modal.top, marginLeft: 0, marginTop: 0 })
-
+        if (modal.height >= data.maxHeight) {
+          modal.top = (gallery && fullscreen) ? data.scrollTop : data.scrollTop + opts.spacing
         } else {
-
-          // ## desktop support
-          $modal.css({
-              position: 'fixed'
-            , top: '50%'
-          })
-          if (opts.fullscreen) {
-            $modal.css({
-                marginTop  : -($modal.outerHeight() / 2)
-              , marginLeft : -($modal.outerWidth() / 2)
-            })
-          }
-
+          modal.top = data.scrollTop + (data.height - modal.height) / 2
         }
+        $modal.css({ top: modal.top, position: 'absolute', marginTop: 0 })
 
         // ## debug info
         if (opts.debug) {
@@ -157,4 +148,4 @@
       }
     }
   }
-})(jQuery)
+})(jQuery, window)
