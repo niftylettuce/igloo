@@ -1,21 +1,23 @@
-<!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8">
     <title>Twitter Bootstrap jQuery Plugins</title>
     <link href="http://twitter.github.com/bootstrap/assets/css/bootstrap.css" rel="stylesheet">
     <link href="http://twitter.github.com/bootstrap/assets/css/bootstrap-responsive.css" rel="stylesheet">
     <link href="https://raw.github.com/blueimp/Bootstrap-Image-Gallery/master/css/bootstrap-image-gallery.css" rel="stylesheet">
     <link href="http://twitter.github.com/bootstrap/assets/js/google-code-prettify/prettify.css" rel="stylesheet">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <meta name="viewport" content="width=device-width,user-scalable=no">
     <style type="text/css">
       html, body {
         height: 100%;
       }
+      body.modal-open {
+        overflow: hidden;
+      }
+      /* optional: override bootstrap image gallery */
+      .modal-gallery {
+        margin-top: 0 !important;
+      }
       @media (max-width: 767px) {
         .modal-gallery {
-          margin-top: 0 !important;
           margin-left: 0 !important;
         }
         .modal-fullscreen {
@@ -39,10 +41,10 @@
     </header>
 
     <!-- Normal Modal -->
-    <div class="modal hide" id="normal-modal">
+    <div class="modal hide fade" id="normal-modal">
       <div class="modal-header">
-        Modal Responsive Fix
         <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h3 class="modal-title">Modal Responsive Fix</h3>
       </div>
       <div class="modal-body">
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque velit urna, consequat quis lacinia ac, rutrum eget ante. Vivamus elementum ornare nulla id placerat. Vestibulum et cursus nisl. Maecenas iaculis tempus quam, facilisis lacinia arcu egestas ut. Ut enim urna, feugiat at aliquam aliquet, sagittis id sem. Phasellus posuere convallis adipiscing. Praesent euismod risus eu arcu varius eu varius augue pharetra. Nullam tincidunt iaculis elit. Etiam ultricies feugiat fermentum. Donec eget congue diam. Nulla elementum ultricies varius. Suspendisse condimentum orci sed lacus cursus at egestas ante egestas. Duis laoreet facilisis augue ut rhoncus.</p>
@@ -63,21 +65,12 @@
             <a href="#normal-modal" data-toggle="modal" class="btn btn-primary btn-large">trigger normal modal</a>
             <a href="#bootstrap-image-gallery" class="btn btn-danger btn-large">go to image gallery modal</a>
           </div>
-          <h2>Modal Responsive Fix <sup>0.0.3</sup></h2>
+          <h2>Modal Responsive Fix <sup>0.0.4</sup></h2>
           <div class="alert alert-info">try either demo (the normal modal or image gallery) and then resize your browser window to see what this does</div>
           <p>Here are remaining TODO's (feel free to solve them):</p>
           <ul>
-            <li>
-              is there a completely/much easier way to do this workaround for `position: fixed`?
-              <ul>
-                <li>(e.g. <a href="http://caniuse.com/#feat=css-fixed" target="_blank">caniuse</a> shows not much compatibility yet)</li>
-                <li>there's also those faked versions where div's scroll...</li>
-              </ul>
-            <li>`uglifyjs -o ... ...` compressed it from 4.8 kB to 1.9 kB (see modal-responsive-fix.min.js)</li>
-            <li>jqueryui vs touchscroll? (also minify touchscroll if we plan to use)</li>
             <li>needs some more testing and cleanup, maybe a rewrite (the basic calculations are there for reference)</li>
             <li>patch css/js for bootstrap-image-gallery so we don't have to override styles</li>
-            <li>auto-resize images when window/orientation changes for bootstrap-image-gallery</li>
             <li>investigate if there is a better solution instead of `html,body{height:100%;}`</li>
             <li>plugin needs some tlc and some other methods probably</li>
             <li>figure out why `toggle fullscreen` isn't working (or) how we can support it</li>
@@ -86,18 +79,24 @@
 &lt;html&gt;
   &lt;!-- your stylesheets go here (view source of this page for example) --&gt;
   &lt;style type='text/css'&gt;
-    /* set the height so $(window).height() is accurate */
+    /* set the height so $(window).height() is accurate
     html, body {
       height: 100%;
     }
+
+    /* prevent scrolling while during modal */
+    body.modal-open {
+      overflow: hidden;
+    }
+
     /* optional: override bootstrap image gallery */
+    .modal-gallery {
+      margin-top: 0 !important;
+    }
     @media (max-width: 767px) {
       .modal-gallery {
-        margin-top: 0 !important;
         margin-left: 0 !important;
       }
-    }
-    @media (max-width: 480px) {
       .modal-fullscreen {
         left: 0 !important;
         right: 0 !important;
@@ -105,14 +104,19 @@
     }
   &lt;/style&gt;
   &lt;body&gt;
+
     &lt;!-- your modals go here (view source of this page for example) --&gt;
+
     &lt;!-- your required scripts go here (view source of this page for example) --&gt;
+
+    &lt;!-- the magic --&gt;
     &lt;script&gt;
       $(function() {
         $('.modal').modalResponsiveFix({ debug: true })
         $('.modal').touchScroll();
       })
     &lt;/script&gt;
+
   &lt;/body&gt;
 &lt;/html&gt;
 </pre>
@@ -124,7 +128,7 @@
             <h3><a href="#bootstrap-image-gallery" name="bootstrap-image-gallery">Bootstrap Image Gallery</a></h3>
             <div id="gallery" data-toggle="modal-gallery" data-target="#modal-gallery"></div>
             <!-- modal-gallery is the modal dialog used for the image gallery -->
-            <div id="modal-gallery" class="modal modal-gallery modal-fullscreen hide fade">
+            <div id="modal-gallery" class="modal modal-gallery modal-fullscreen modal-fullscreen-stretch hide fade">
                 <div class="modal-header">
                     <a class="close" data-dismiss="modal">&times;</a>
                     <h3 class="modal-title"></h3>
@@ -166,7 +170,7 @@
     <script src="https://raw.github.com/niftylettuce/Bootstrap-Image-Gallery/master/js/bootstrap-image-gallery.js"></script>
     <!-- Modal Responsive Fix -->
     <script src="http://raw.github.com/niftylettuce/twitter-bootstrap-jquery-plugins/master/modal-responsive-fix/touchscroll.js"></script>
-    <script src="modal-responsive-fix/modal-responsive-fix.js"></script>
+    <script src="modal-responsive-fix/modal-responsive-fix.min.js"></script>
     <!-- Make Code Pretty -->
     <script>
       window.prettyPrint && prettyPrint()
@@ -174,7 +178,6 @@
     <!-- Example Implementation -->
     <script>
       $(function() {
-        // normal modal window
         $('.modal').modalResponsiveFix({ debug: true })
         $('.modal').touchScroll();
         // Load images via flickr for demonstration purposes:
@@ -206,16 +209,6 @@
           $('#modal-gallery').toggleClass('modal-fullscreen')
         })
       })
-    </script>
-    <script>
-      var _gaq = _gaq || [];
-      _gaq.push(['_setAccount', 'UA-34596376-1']);
-      _gaq.push(['_trackPageview']);
-      (function() {
-        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-      })();
     </script>
   </body>
 </html>
