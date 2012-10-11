@@ -1,4 +1,3 @@
-
 //     Twitter Bootstrap jQuery Plugins - Modal Responsive Fix
 //     Copyright (c) 2012 Nick Baugh <niftylettuce@gmail.com>
 //     MIT Licensed
@@ -124,7 +123,10 @@
           difference = difference - $header.outerHeight(true)
           difference = difference - $footer.outerHeight(true)
           difference = difference - ($body.outerHeight(true) - $body.height())
-          if (difference > 400) difference = 400
+          if (difference > 400 && data.width > 480 && data.width <= 767)
+              difference = 400
+          else 
+              difference = difference - 50;
           $body.css('max-height', difference)
         }
 
