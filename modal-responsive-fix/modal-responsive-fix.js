@@ -126,7 +126,7 @@
           if (difference > 400 && data.width > 480 && data.width <= 767)
               difference = 400
           else 
-              difference = difference - 50;
+              difference = difference - 50
           $body.css('max-height', difference)
         }
 
