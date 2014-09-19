@@ -71,11 +71,17 @@ exports = module.exports = function() {
       }
     },
     development: {
-      port: 3000,
+      server: {
+        port: 3000
+      }
     },
     production: {
-      port: 3080,
-      requests: false,
+      server: {
+        port: 3080
+      },
+      logger: {
+        requests: false
+      },
       output: {
         colorize: false,
         prettyPrint: false
@@ -88,7 +94,7 @@ exports['@singleton'] = true
 
 ```
 
-You can have a `boot/local.js` with local settings if you need something unversioned (and load it by doing `$ export NODE_ENV=local`).
+You can have a `boot/local.js` with local settings if you need something unversioned (and load it when the environment is `development` — default).
 
 ```js
 // boot/local.js
@@ -100,20 +106,18 @@ var maxAge = 30 * 24 * 60 * 60 * 1000
 exports = module.exports = function() {
 
   return {
-    local: {
-      uploadsDir: uploadsDir,
-      server: {
-        host: '0.0.0.0',
-        env: 'local',
-        port: 3003,
-      },
-      mongo: {
-        dbname: 'igloo-local',
-      },
-      redis: {
-        prefix: 'igloo-local',
-        maxAge: maxAge
-      }
+    uploadsDir: uploadsDir,
+    server: {
+      host: '0.0.0.0',
+      env: 'local',
+      port: 3003,
+    },
+    mongo: {
+      dbname: 'igloo-local',
+    },
+    redis: {
+      prefix: 'igloo-local',
+      maxAge: maxAge
     }
 
   }
@@ -156,8 +160,8 @@ app.get('/', function(req, res, next) {
   res.send("It's cold outside, but warm in the igloo")
 })
 
-app.listen(settings.port, function() {
-  logger.info('Server started on port %d', settings.port)
+app.listen(settings.server.port, function() {
+  logger.info('Server started on port %d', settings.server.port)
 })
 
 ```
