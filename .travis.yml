@@ -1,9 +1,12 @@
 language: node_js
 node_js:
 - '0.10'
-- '0.11'
 script: npm run-script test-travis
-after_script: npm install coveralls@2 && cat ./coverage/lcov.info | coveralls
+after_script:
+- npm install -g coveralls@2
+- cat ./coverage/lcov.info | coveralls
+- npm install -g codeclimate-test-reporter
+- cat ./coverage/lcov.info | codeclimate
 notifications:
   webhooks:
     urls:
@@ -14,3 +17,9 @@ notifications:
   hipchat:
     rooms:
       secure: SZAghgIWk6b8rpItdkjSY8UJtTW8E8AIYE5KkTGa9FiV0/q9kTHIAiqxBAQyIgF9IVsrO2NZdO9FrsiKjkSUPXbkonxtuqptl2c7bJLm2gUNmku2DfG0hn8TY50MXxGpiyEySoxcX4igQTzSZlJM81T0EI+L0PQJJXUKEJGuadY=
+  slack:
+    secure: 3uMd7XP25L2pPQ+4yzWmlSwsTBaiTERvTrA/e+Nz69g+nMpNviMVMRtLF/wlp01eehgNJ9InVdQ7Bq+MqS4eJPtqjVass7a3IplMIvjugMPlzw9eCEDxrxdbW649jw2esVKOj0eB40zhLrsV1AtxPyENIWeOn8uvVNjMLhiNiUs=
+addons:
+  code_climate:
+    repo_token:
+      secure: BZej5nHBS+etVd/Xlq0uFRxgsbhh1njqvQZkBIec1kW6u+g9k16y1GVKGzlZsThlSUkIcmZ36N7MGstRNCJ5cuY5dLq914xqm8gZGvK15EzcdqroLPLOctkeJ6/KADqCQwI9L9bhP87kNTAcuNAljAJthiO3swM4fM7nLEQMbkQ=

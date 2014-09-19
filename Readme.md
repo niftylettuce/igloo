@@ -5,6 +5,7 @@
 [![Build Status][travis-image]][travis-url]
 [![NPM downloads][npm-downloads]][npm-url]
 [![Test Coverage][coveralls-image]][coveralls-url]
+[![Static Analysis][codeclimate-image]][codeclimate-url]
 [![MIT License][license-image]][license-url]
 [![Gitter][gitter-image]][gitter-url]
 
@@ -164,6 +165,7 @@ app.listen(settings.port, function() {
 
 ## Components
 
+* [email](#email)
 * [error-handler](#error-handler)
 * [knex](#knex)
 * [logger](#logger)
@@ -173,6 +175,31 @@ app.listen(settings.port, function() {
 * [sessions](#sessions)
 * [settings](#settings)
 * [update-notifier](#update-notifier)
+
+### email
+
+> Returns a function which accepts templateName, locals, headers, transport, and callback arguments.  This component uses
+
+[View source](lib/boot/email.js)
+
+```js
+// example - email
+
+// TODO: finish this!
+
+// mention that transport defaults to settings.email.transport
+
+// mention that headers inherits settings.email.headers
+
+// but only if you don't set `headers.useDefaults: false`
+
+// note that is also uses `settings.email.templates` object
+// which can have `dir` string and `options` object for node email-templates pkg
+
+// also document about having `transport` of `settings.email.transport` be an
+// actual transporter already pre-created (possibly with plugins like html-to-text)
+
+```
 
 ### error-handler
 
@@ -410,6 +437,8 @@ See [nifty-conventions][nifty-conventions] for code guidelines, general project 
 [MIT][license-url]
 
 
+[codeclimate-image]: http://img.shields.io/codeclimate/github/niftylettuce/igloo.svg?style=flat
+[codeclimate-url]: https://codeclimate.com/github/niftylettuce/igloo
 [license-image]: http://img.shields.io/badge/license-MIT-blue.svg?style=flat
 [license-url]: LICENSE
 [nifty-conventions]: https://github.com/niftylettuce/nifty-conventions
