@@ -42,7 +42,7 @@
     "winston": "git://github.com/niftylettuce/winston",
     "winston-hipchat": "^0.1.1",
     "winston-mongodb": "~0.4.3",
-    "winston-slack": "^0.1.6"
+    "slack-winston": "^0.0.1"
   },
   "devDependencies": {
     "chai": "^1.9.1",
