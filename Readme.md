@@ -219,6 +219,12 @@ var errorHandler = IoC.create('igloo/error-handler')
 
 app.post('/user', createUser, errorHandler)
 
+// you could also do:
+// app.post('/user', createUser)
+// app.use(errorHandler)
+// but make sure that `app.use(errorHandler)`
+// is the very last route middleware to be `use`'d
+
 function createUser(req, res, next) {
 
   if (!_.isString(req.body.name))
