@@ -29,7 +29,7 @@
   "homepage": "https://github.com/niftylettuce/igloo",
   "dependencies": {
     "bootable": "^0.2.3",
-    "chalk": "^0.4.0",
+    "chalk": "^1.0.0",
     "commander": "^2.2.0",
     "connect-redis": "~2.0.0",
     "email-templates": "^1.1.2",
