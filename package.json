@@ -1,6 +1,6 @@
 {
   "name": "igloo",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "Igloo is a lightweight, fast, and minimal framework for rapid development",
   "main": "./lib",
   "engines": {
