@@ -18,7 +18,6 @@ Need to view documentation for a given component?  See [Components](#components)
 
 ## Index
 
-* [Sponsor](#sponsor)
 * [Install](#install)
 * [Usage](#usage)
 * [Components](#components)
@@ -29,9 +28,6 @@ Need to view documentation for a given component?  See [Components](#components)
 * [License](#license)
 
 
-## Sponsor
-
-[![Clevertech][clevertech-image]](http://clevertech.biz)
 
 
 ## Install
@@ -461,7 +457,6 @@ See [nifty-conventions][nifty-conventions] for code guidelines, general project 
 [coveralls-url]: https://coveralls.io/r/niftylettuce/igloo?branch=master
 [igloo-image]: https://filenode.s3.amazonaws.com/igloo.png
 [eskimo]: https://github.com/niftylettuce/eskimo
-[clevertech-image]: http://eskimo.io/img/clevertech.png
 [electrolyte]: https://github.com/jaredhanson/electrolyte
 [knex]: http://knexjs.org
 [express]: http://expressjs.com
