@@ -1,3 +1,4 @@
+> This package is deprecated and a better alternative has been created, please use Lad: https://lad.js.org
 
 # Igloo
 
